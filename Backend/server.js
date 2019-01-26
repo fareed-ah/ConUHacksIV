@@ -1,6 +1,5 @@
 //Import libraries
 var express = require("express"); 
-var app = express(); 
 var request = require("request"); 
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -65,15 +64,16 @@ router.delete("/deleteData", (req, res) => {
 router.post("/putData", (req, res) => {
   let data = new Data();
 
-  const { id, message } = req.body;
+  const { id, address, price} = req.body;
 
-  if ((!id && id !== 0) || !message) {
+  if ((!id && id !== 0) || !address || !price) {
     return res.json({
       success: false,
       error: "INVALID INPUTS"
     });
   }
-  data.message = message;
+  data.address = address;
+  data.price = price; 
   data.id = id;
   data.save(err => {
     if (err) return res.json({ success: false, error: err });
