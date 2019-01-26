@@ -49,12 +49,12 @@ app.get('/getData', function(req, res){
 
 		var db = client.db("shfa-db"); 
 
-		db.collection('shfas').find().sort({$natural:-1}).toArray(function(err, result){
+		db.collection('shfas').find().sort({$natural:-1}).toArray(function(err, data){
 			if(err){
 				return res.json({ success: false, error: err });
-			} else if (result.length){
-				console.log('Found: ', result); 
-				res.status(200).send(JSON.stringify(result)); 
+			} else if (data.length){
+				console.log('Found: ', data); 
+				res.status(200).send(JSON.stringify(data)); 
 				return res.json({ success: true, data: data });
 			} else {
 				console.log('No Document(s) found with defined "find" criteria!'); 
