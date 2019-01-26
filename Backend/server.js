@@ -63,7 +63,7 @@ router.delete("/deleteData", (req, res) => {
 // this method adds new data in our database
 router.post("/putData", (req, res) => {
   let data = new Data();
-
+  console.log("fuckkkkkkkkk"); 
   const { id, address, price} = req.body;
 
   if ((!id && id !== 0) || !address || !price) {
@@ -83,6 +83,18 @@ router.post("/putData", (req, res) => {
 
 // append /api for our http requests
 app.use("/api", router);
+
+//get data from api. 
+router.get("/results", function(req,res){
+	var title = "harry potter";  
+	var url = "http://www.omdbapi.com/?s=" + title + "&apikey=thewdb";
+	request(url,function(error, response, body){
+       if(!error && response.statusCode == 200){
+           var data= JSON.parse(body)
+           console.log(data); 
+       }
+   });
+});
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
