@@ -1,2 +1,2 @@
 # ConUHacksIV
-SHAFA
+SHFA
