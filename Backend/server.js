@@ -3,6 +3,7 @@ var express = require("express");
 var request = require("request"); 
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+var mongodb = require('mongodb'); 
 const logger = require("morgan");
 const Data = require("./data"); 
 
@@ -32,12 +33,36 @@ app.use(logger("dev"));
 
 // this is our get method
 // this method fetches all available data in our database
-router.get("/getData", (req, res) => {
-  Data.find((err, data) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true, data: data });
-  });
-});
+// router.get("/getData", (req, res) => {
+//   Data.find((err, data) => {
+//     if (err) return res.json({ success: false, error: err });
+//     return res.json({ success: true, data: data });
+//   });
+// });
+
+var MongoClient = mongodb.MongoClient; 
+var db_name = 'shfa-db'; 
+var url = "mongodb://sahilsharma356:Sahil_742995@ds135800.mlab.com:35800/shfa-db";  
+
+app.get('/getData', function(req, res){
+	MongoClient.connect(url, {useNewUrlParser: true },function(err, client) {
+
+		var db = client.db("shfa-db"); 
+
+		db.collection('shfas').find().sort({$natural:-1}).toArray(function(err, result){
+			if(err){
+				return res.json({ success: false, error: err });
+			} else if (result.length){
+				console.log('Found: ', result); 
+				res.status(200).send(JSON.stringify(result)); 
+				return res.json({ success: true, data: data });
+			} else {
+				console.log('No Document(s) found with defined "find" criteria!'); 
+			}
+			client.close(); 
+		}); 
+	}); 
+}); 
 
 // this is our update method
 // this method overwrites existing data in our database
