@@ -1,17 +1,17 @@
 //Import libraries
-var express = require("express"); 
-var request = require("request"); 
+var express = require("express");
+var request = require("request");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-var mongodb = require('mongodb'); 
+var mongodb = require('mongodb');
 const logger = require("morgan");
-const Data = require("./data"); 
+const Data = require("./data");
 
 const API_PORT = 3001;
 const app = express();
 const router = express.Router();
 
-//mlab database URL 
+//mlab database URL
 const dbRoute = "mongodb://sahilsharma356:Sahil_742995@ds135800.mlab.com:35800/shfa-db";
 
 //connect to mlab database
@@ -20,16 +20,17 @@ mongoose.connect(
 	{useNewUrlParser: true}
 );
 
-let db = mongoose.connection; 
+let db = mongoose.connection;
 
-db.once("open", () => console.log("connected to database")); 
+db.once("open", () => console.log("connected to database"));
 
-//check if connection to database successful 
-db.on("error", console.error.bind(console, "MongoDB connection error:")); 
+//check if connection to database successful
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-app.use(bodyParser.urlencoded({extended:false})); 
-app.use(bodyParser.json()); 
-app.use(logger("dev")); 
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+app.use(logger("dev"));
+
 
 // this is our get method
 // this method fetches all available data in our database
@@ -40,29 +41,29 @@ app.use(logger("dev"));
 //   });
 // });
 
-var MongoClient = mongodb.MongoClient; 
-var db_name = 'shfa-db'; 
-var url = "mongodb://sahilsharma356:Sahil_742995@ds135800.mlab.com:35800/shfa-db";  
+var MongoClient = mongodb.MongoClient;
+var db_name = 'shfa-db';
+var url = "mongodb://sahilsharma356:Sahil_742995@ds135800.mlab.com:35800/shfa-db";
 
 app.get('/getData', function(req, res){
 	MongoClient.connect(url, {useNewUrlParser: true },function(err, client) {
 
-		var db = client.db("shfa-db"); 
+		var db = client.db("shfa-db");
 
-		db.collection('shfas').find().sort({$natural:-1}).toArray(function(err, result){
+		db.collection('shfas').find().sort({$natural:-1}).toArray(function(err, data){
 			if(err){
 				return res.json({ success: false, error: err });
-			} else if (result.length){
-				console.log('Found: ', result); 
-				res.status(200).send(JSON.stringify(result)); 
+			} else if (data.length){
+				console.log('Found: ', data);
+				res.status(200).send(JSON.stringify(data));
 				return res.json({ success: true, data: data });
 			} else {
-				console.log('No Document(s) found with defined "find" criteria!'); 
+				console.log('No Document(s) found with defined "find" criteria!');
 			}
-			client.close(); 
-		}); 
-	}); 
-}); 
+			client.close();
+		});
+	});
+});
 
 // this is our update method
 // this method overwrites existing data in our database
@@ -88,7 +89,7 @@ router.delete("/deleteData", (req, res) => {
 // this method adds new data in our database
 router.post("/putData", (req, res) => {
   let data = new Data();
-  console.log("fuckkkkkkkkk"); 
+  console.log("fuckkkkkkkkk");
   const { id, address, price} = req.body;
 
   if ((!id && id !== 0) || !address || !price) {
@@ -98,7 +99,7 @@ router.post("/putData", (req, res) => {
     });
   }
   data.address = address;
-  data.price = price; 
+  data.price = price;
   data.id = id;
   data.save(err => {
     if (err) return res.json({ success: false, error: err });
@@ -109,14 +110,14 @@ router.post("/putData", (req, res) => {
 // append /api for our http requests
 app.use("/api", router);
 
-//get data from api. 
+//get data from api.
 router.get("/results", function(req,res){
-	var title = "harry potter";  
+	var title = "harry potter";
 	var url = "http://www.omdbapi.com/?s=" + title + "&apikey=thewdb";
 	request(url,function(error, response, body){
        if(!error && response.statusCode == 200){
            var data= JSON.parse(body)
-           console.log(data); 
+           console.log(data);
        }
    });
 });
