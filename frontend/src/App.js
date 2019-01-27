@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AppNavbar from './Components/AppNavbar'; 
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -6,6 +7,7 @@ import React, { Component } from "react";
 //import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
+
 
 class App extends Component {
 
@@ -59,15 +61,11 @@ class App extends Component {
     });
   };
 
-
   render() {
   	const data = this.state.data; 
   	return <div> 
-	IM READY TO USE THE BACK END APIS! 
+  	<AppNavbar />
 	{JSON.stringify(data)}; 
-
-
-
   	</div>
 
   }

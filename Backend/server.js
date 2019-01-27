@@ -59,7 +59,7 @@ app.get('/getData', function(req, res){
 				return res.json({ success: false, error: err });
 			} else if (data.length){
 				console.log('Found: ', data);
-				// res.status(200).send(JSON.stringify(data));
+				// return res.status(200).send(JSON.stringify(data));
 				return res.json({ success: true, data: data });
 			} else {
 				console.log('No Document(s) found with defined "find" criteria!');
@@ -123,16 +123,16 @@ router.post("/getData", function(req,res){
 app.use("/api", router);
 
 //get data from api.
-router.get("/results", function(req,res){
-	var title = "harry potter";
-	var url = "http://www.omdbapi.com/?s=" + title + "&apikey=thewdb";
-	request(url,function(error, response, body){
-       if(!error && response.statusCode == 200){
-           var data= JSON.parse(body)
-           console.log(data);
-       }
-   });
-});
+// router.get("/results", function(req,res){
+// 	var title = "harry potter";
+// 	var url = "http://www.omdbapi.com/?s=" + title + "&apikey=thewdb";
+// 	request(url,function(error, response, body){
+//        if(!error && response.statusCode == 200){
+//            var data= JSON.parse(body)
+//            console.log(data);
+//        }
+//    });
+// });
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
