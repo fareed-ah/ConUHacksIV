@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 import AppNavbar from './Components/AppNavbar';
-// import logo from './logo.svg';
-// import './App.css';
-
-
-//import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 
@@ -20,7 +15,7 @@ class App extends Component {
   };
 
 
-  // when component mounts, first thing it does is fetch all existing data in our db
+    // when component mounts, first thing it does is fetch all existing data in our db
     // then we incorporate a polling logic so that we can easily see if our db has
     // changed and implement those changes into our UI
     componentDidMount() {
@@ -40,7 +35,7 @@ class App extends Component {
       }
     }
 
-    // our first get method that uses our backend api to
+  // our first get method that uses our backend api to
   // fetch data from our data base
   getDataFromDb = () => {
     fetch("http://localhost:3001/getData")
@@ -51,7 +46,6 @@ class App extends Component {
   // our put method that uses our backend api
   // to create new query into our data base
   putDataToDB = () => {
-    // let currentIds = this.state.data.map(data => data.id);
     let idToBeAdded = 0;
 
     axios.post("http://localhost:3001/postData", {
@@ -64,7 +58,7 @@ class App extends Component {
   render() {
   	const data = this.state.data;
   	return <div>
-  	<AppNavbar />
+  	   <AppNavbar />
           <ul>
             {data.length <= 0
               ? "NO DB ENTRIES YET"
@@ -79,7 +73,6 @@ class App extends Component {
            ADD
          </button>
   	</div>
-
   }
 }
 
