@@ -77,11 +77,8 @@ constructor(props) {
   		<div>
   			<AppNavbar />
   			<NavbarForm handler = {this.handler}/>
-<<<<<<< Updated upstream
-        	<Map />
-=======
+
         <Map destination = {this.state.destination}/>
->>>>>>> Stashed changes
   		</div>
   	);
   }

@@ -1,13 +1,8 @@
 
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-<<<<<<< Updated upstream
 //import axios from "axios";
 // import NavbarForm from "./NavbarForm"
-=======
-import axios from "axios";
-
->>>>>>> Stashed changes
 
 
 class Map extends Component {
@@ -42,7 +37,7 @@ class Map extends Component {
       .then(results => results.json())
       .then(res => this.setState({ results: res.results,lng: res.results[0].geometry.location.lng,lat:res.results[0].geometry.location.lat}));
 
-    
+
   };
 
   render() {
