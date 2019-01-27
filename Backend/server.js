@@ -6,10 +6,14 @@ const bodyParser = require("body-parser");
 var mongodb = require('mongodb');
 const logger = require("morgan");
 const Data = require("./data");
+var cors = require("cors"); 
+
 
 const API_PORT = 3001;
 const app = express();
 const router = express.Router();
+
+app.use(cors()); 
 
 //mlab database URL
 const dbRoute = "mongodb://sahilsharma356:Sahil_742995@ds135800.mlab.com:35800/shfa-db";
@@ -55,7 +59,7 @@ app.get('/getData', function(req, res){
 				return res.json({ success: false, error: err });
 			} else if (data.length){
 				console.log('Found: ', data);
-				res.status(200).send(JSON.stringify(data));
+				// res.status(200).send(JSON.stringify(data));
 				return res.json({ success: true, data: data });
 			} else {
 				console.log('No Document(s) found with defined "find" criteria!');
@@ -87,24 +91,32 @@ router.delete("/deleteData", (req, res) => {
 
 // this is our create method
 // this method adds new data in our database
-router.post("/putData", (req, res) => {
-  let data = new Data();
-  console.log("fuckkkkkkkkk");
-  const { id, address, price} = req.body;
+// router.post("/putData", (req, res) => {
+//   let data = new Data();
+//   const { id, address, price} = req.body;
 
-  if ((!id && id !== 0) || !address || !price) {
-    return res.json({
-      success: false,
-      error: "INVALID INPUTS"
-    });
-  }
-  data.address = address;
-  data.price = price;
-  data.id = id;
-  data.save(err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
+//   if ((!id && id !== 0) || !address || !price) {
+//     return res.json({
+//       success: false,
+//       error: "INVALID INPUTS"
+//     });
+//   }
+//   data.address = address;
+//   data.price = price; 
+//   data.id = id;
+//   data.save(err => {
+//     if (err) return res.json({ success: false, error: err });
+//     return res.json({ success: true });
+//   });
+// });
+
+router.post("/getData", function(req,res){
+	var id = req.body.id; 
+	var address = req.body.address; 
+	var price = req.body.address; 
+	var newListing = {id:id, address:address, price:price}; 
+	shfas.push(newListing); 
+	return res.json({ success: true }); 
 });
 
 // append /api for our http requests

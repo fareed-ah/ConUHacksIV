@@ -17,13 +17,14 @@ class App extends Component {
     intervalIsSet: false,
   };
 
+
   // when component mounts, first thing it does is fetch all existing data in our db
     // then we incorporate a polling logic so that we can easily see if our db has
     // changed and implement those changes into our UI
     componentDidMount() {
       this.getDataFromDb();
       if (!this.state.intervalIsSet) {
-        let interval = setInterval(this.getDataFromDb, 1000);
+        let interval = setInterval(this.getDataFromDb, 100000);
         this.setState({ intervalIsSet: interval });
       }
     }
@@ -47,48 +48,29 @@ class App extends Component {
 
   // our put method that uses our backend api
   // to create new query into our data base
-  putDataToDB = message => {
-    let currentIds = this.state.data.map(data => data.id);
+  putDataToDB = () => {
+    // let currentIds = this.state.data.map(data => data.id);
     let idToBeAdded = 0;
-    while (currentIds.includes(idToBeAdded)) {
-      ++idToBeAdded;
-    }
 
-    axios.post("http://localhost:3001/putData", {
+    axios.post("http://localhost:3001/getData", {
       id: idToBeAdded,
-      message: message
+      address: "carleton university", 
+      price: "133000"
     });
   };
 
 
   render() {
-    return <div>I'M READY TO USE THE BACK END APIS! :-)</div>;
-	}
+  	const data = this.state.data; 
+  	return <div> 
+	IM READY TO USE THE BACK END APIS! 
+	{JSON.stringify(data)}; 
+
+
+
+  	</div>
+
+  }
 }
 
-
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <p>
-//             Edit <code>src/App.js</code> and save to reload.
-//           </p>
-//           <a
-//             className="App-link"
-//             href="https://reactjs.org"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Learn React
-//           </a>
-//         </header>
-//       </div>
-//     );
-//   }
-// }
-
-export default App;
+	export default App;
