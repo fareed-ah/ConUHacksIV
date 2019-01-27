@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-<<<<<<< HEAD
-=======
 
-// import './index.css';
->>>>>>> master
 import App from './App';
-import AddListing from './Components/AddListingForm.js';
+import AddListing from './Components/ListingForm.js';
 import * as serviceWorker from './serviceWorker';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 

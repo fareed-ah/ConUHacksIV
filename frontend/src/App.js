@@ -56,46 +56,29 @@ class App extends Component {
     });
   };
 
-  state = {
-  	fields: {}
-  };
-
-  onSubmit = fields => {
-  	this.setState({fields});
-  };
-
   render() {
-<<<<<<< HEAD
-  	const data = this.state.data;
-  	return <div>
-  	   <AppNavbar />
-          <ul>
-            {data.length <= 0
-              ? "NO DB ENTRIES YET"
-              : data.map(d => (
-                  <li style={{ padding: "10px" }} key={d.id}>
-                    <span style={{ color: "gray" }}> address: </span> {d.address} <br />
-                    <span style={{ color: "gray" }}> price: </span>{d.price}
-                  </li>
-                ))}
-          </ul>
-          <button onClick={this.putDataToDB}>
-           ADD
-         </button>
-  	</div>
-=======
   	const data = this.state.data;
   	return (
   		<div>
   			<AppNavbar />
-  			<ListingForm onSubmit={fields => this.onSubmit(fields)} />
-  			<p> {JSON.stringify(this.state.fields, null,2)}</p>
-			{JSON.stringify(data)};
   		</div>
   	);
 
->>>>>>> master
   }
 }
 
+// <AppNavbar />
+//    <ul>
+//      {data.length <= 0
+//        ? "NO DB ENTRIES YET"
+//        : data.map(d => (
+//            <li style={{ padding: "10px" }} key={d.id}>
+//              <span style={{ color: "gray" }}> address: </span> {d.address} <br />
+//              <span style={{ color: "gray" }}> price: </span>{d.price}
+//            </li>
+//          ))}
+//    </ul>
+//    <button onClick={this.putDataToDB}>
+//     ADD
+//   </button>
 export default App;
