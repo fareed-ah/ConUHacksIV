@@ -12,10 +12,24 @@ class App extends Component {
   state = {
     data: [],
     id: 0,
-    address: "Carleton",
-    price: "100.00",
+    Destination: "Carleton",
+    NumBusses: "2",
     intervalIsSet: false,
   };
+
+constructor(props) {
+    super(props)
+
+    this.handler = this.handler.bind(this)
+  }
+
+  handler(dest, num) {
+    this.setState({
+      Destination: dest, 
+      NumBusses: num
+    }); 
+  }; 
+
 
     // when component mounts, first thing it does is fetch all existing data in our db
     // then we incorporate a polling logic so that we can easily see if our db has
@@ -63,7 +77,7 @@ class App extends Component {
   	return (
   		<div>
   			<AppNavbar />
-  			<NavbarForm/>
+  			<NavbarForm handler = {this.handler}/>
         <Map />
   		</div>
   	);

@@ -62,7 +62,7 @@ import{
 
       onSubmit = e => {
         e.preventDefault(); 
-        console.log(this.state); 
+        this.props.handler(this.state.Destination, this.state.NumBusses);
       }
 
   		toggle = () => {

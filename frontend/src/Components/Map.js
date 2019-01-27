@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
+// import NavbarForm from "./NavbarForm"
 
 
 class Map extends Component {
@@ -11,6 +12,10 @@ class Map extends Component {
     lng:0,
     lat:0
   };
+
+  // onSubmit = (fields) => {
+  //   console.log('App component got: ', fields)
+  // }; 
 
     // when component mounts, first thing it does is fetch all existing data in our db
     // then we incorporate a polling logic so that we can easily see if our db has
@@ -34,7 +39,6 @@ class Map extends Component {
       .then(res => this.setState({ results: res.results,lng: res.results[0].geometry.location.lng,lat:res.results[0].geometry.location.lat}));
 
     this.getNearbyStopsFromDb();
-
   };
 
   render() {
