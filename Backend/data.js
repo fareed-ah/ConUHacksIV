@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// this will be our data base's data structure 
+// this will be our data base's data structure
 const DataSchema = new Schema(
   {
     id: Number,
-    Address: String,
-    Price: Number
+    address: String,
+    price: String
   },
   { timestamps: true }
 );

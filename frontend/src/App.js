@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AppNavbar from './Components/AppNavbar'; 
+import AppNavbar from './Components/AppNavbar';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -54,18 +54,30 @@ class App extends Component {
     // let currentIds = this.state.data.map(data => data.id);
     let idToBeAdded = 0;
 
-    axios.post("http://localhost:3001/getData", {
+    axios.post("http://localhost:3001/postData", {
       id: idToBeAdded,
-      address: "carleton university", 
+      address: "carleton university",
       price: "133000"
     });
   };
 
   render() {
-  	const data = this.state.data; 
-  	return <div> 
+  	const data = this.state.data;
+  	return <div>
   	<AppNavbar />
-	{JSON.stringify(data)}; 
+          <ul>
+            {data.length <= 0
+              ? "NO DB ENTRIES YET"
+              : data.map(d => (
+                  <li style={{ padding: "10px" }} key={d.id}>
+                    <span style={{ color: "gray" }}> address: </span> {d.address} <br />
+                    <span style={{ color: "gray" }}> price: </span>{d.price}
+                  </li>
+                ))}
+          </ul>
+          <button onClick={this.putDataToDB}>
+           ADD
+         </button>
   	</div>
 
   }
