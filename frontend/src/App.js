@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AppNavbar from './Components/AppNavbar'; 
+import ListingForm from "./Components/ListingForm"
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -61,14 +62,27 @@ class App extends Component {
     });
   };
 
+  state = {
+  	fields: {}
+  };
+
+  onSubmit = fields => {
+  	this.setState({fields}); 
+  };
+
   render() {
   	const data = this.state.data; 
-  	return <div> 
-  	<AppNavbar />
-	{JSON.stringify(data)}; 
-  	</div>
+  	return (
+  		<div> 
+  			<AppNavbar />
+  			<ListingForm onSubmit={fields => this.onSubmit(fields)} />
+  			<p> {JSON.stringify(this.state.fields, null,2)}</p>
+			{JSON.stringify(data)}; 
+  		</div>
+  	);
 
   }
 }
 
-	export default App;
+export default App;
+
