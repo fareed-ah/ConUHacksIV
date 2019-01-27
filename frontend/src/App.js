@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AppNavbar from './Components/AppNavbar';
+import ListingForm from "./Components/ListingForm"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 
@@ -55,7 +56,16 @@ class App extends Component {
     });
   };
 
+  state = {
+  	fields: {}
+  };
+
+  onSubmit = fields => {
+  	this.setState({fields});
+  };
+
   render() {
+<<<<<<< HEAD
   	const data = this.state.data;
   	return <div>
   	   <AppNavbar />
@@ -73,7 +83,19 @@ class App extends Component {
            ADD
          </button>
   	</div>
+=======
+  	const data = this.state.data;
+  	return (
+  		<div>
+  			<AppNavbar />
+  			<ListingForm onSubmit={fields => this.onSubmit(fields)} />
+  			<p> {JSON.stringify(this.state.fields, null,2)}</p>
+			{JSON.stringify(data)};
+  		</div>
+  	);
+
+>>>>>>> master
   }
 }
 
-	export default App;
+export default App;

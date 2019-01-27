@@ -1,5 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+<<<<<<< HEAD
+=======
+
+// import './index.css';
+>>>>>>> master
 import App from './App';
 import AddListing from './Components/AddListingForm.js';
 import * as serviceWorker from './serviceWorker';
