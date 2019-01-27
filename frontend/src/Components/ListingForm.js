@@ -17,6 +17,7 @@ export default class ListingForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     console.log(this.state);
+
   };
 
   render() {

@@ -67,18 +67,4 @@ class App extends Component {
   }
 }
 
-// <AppNavbar />
-//    <ul>
-//      {data.length <= 0
-//        ? "NO DB ENTRIES YET"
-//        : data.map(d => (
-//            <li style={{ padding: "10px" }} key={d.id}>
-//              <span style={{ color: "gray" }}> address: </span> {d.address} <br />
-//              <span style={{ color: "gray" }}> price: </span>{d.price}
-//            </li>
-//          ))}
-//    </ul>
-//    <button onClick={this.putDataToDB}>
-//     ADD
-//   </button>
 export default App;
