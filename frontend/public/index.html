@@ -28,7 +28,95 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="navbar_information"></div>
     <div id="navbar_selection"></div>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1F_n5E1N1b_xtjczOoGgDWe88Id6csr0" defer></script> ); -->
     <div id="root"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js">
+      var cors = require("cors"); 
+      app.use(cors());
+$(document).ready(function(){$("button").click(function(){
+  var request = new XMLHttpRequest({mozSystem: true});
+  request.open('GET', 'https://api.octranspo1.com/v1.2/GetRouteSummaryForStop?appID=eb300572&apiKey=8e4e6c5538e88f87d96b8410e07658d&stopNo=7659', true);
+  request.onload = function(){
+
+
+    var parseXml;
+
+if (typeof window.DOMParser != "undefined") {
+    parseXml = function(xmlStr) {
+        return ( new window.DOMParser() ).parseFromString(xmlStr, "text/xml");
+    };
+} else if (typeof window.ActiveXObject != "undefined" &&
+       new window.ActiveXObject("Microsoft.XMLDOM")) {
+    parseXml = function(xmlStr) {
+        var xmlDoc = new window.ActiveXObject("Microsoft.XMLDOM");
+        xmlDoc.async = "false";
+        xmlDoc.loadXML(xmlStr);
+        return xmlDoc;
+    };
+} else {
+    throw new Error("No XML parser found");
+}
+
+var xml = parseXml("this.response");
+document.body.innerHTML = "Root element: " + xml.documentElement.nodeName;
+
+
+
+
+
+
+
+
+    var data = JSON.parse(this.response);
+    if (request.status >= 200 && request.status < 400) {
+      document.getElementById("demo").innerHTML = data.RouteNo;
+    } else {
+      console.log('error');
+    }
+}
+request.send();
+}
+
+)});
+//function(){$("button").click(function(){
+//    $.ajax({
+//         url: 'https://api.wit.ai/message?v=20140826&q=',
+//         beforeSend: function(xhr) {
+//              xhr.setRequestHeader("Authorization", "Bearer 6QXNMEMFHNY4FJ5ELNFMP5KRW52WFXN5")
+//         }, success: function(data){
+//             alert(data);
+//             //process the JSON data etc
+//         }
+// })
+
+//    });
+
+//   var request = new XMLHttpRequest();
+
+// // Open a new connection, using the GET request on the URL endpoint
+// request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+
+// request.onload = function () {
+//   alert(JSON.parse(this.response));
+//   // Begin accessing JSON data here
+//   }
+// }});
+
+</script>
+
+    <button type="button" onclick="myFunction()">Fuck me hoe!</button>
+    <div id="demo">suck my dick!</div>
+    <script type="text/javascript">
+      function myFunction() {
+        document.getElementById("demo").style.color = "red";
+        const Http = new XMLHttpRequest();
+
+        // body...
+      }
+
+    </script>
+    <button>Send an HTTP GET request to a page and get the result back</button>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -39,5 +127,8 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1F_n5E1N1b_xtjczOoGgDWe88Id6csr0&callback=InitMap" async defer></script> ); -->
+
+     <div id="demo">hi</div>
   </body>
 </html>
