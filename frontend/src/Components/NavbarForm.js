@@ -1,41 +1,35 @@
-import React, {Component} from 'react'; 
-import {BrowserRouter as Router, Route } from 'react-router-dom';
+import React from 'react'; 
+//import {BrowserRouter} from 'react-router-dom';
 import{
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem, 
+  NavItem, 
   Container
   } from 'reactstrap';
   import 'bootstrap/dist/css/bootstrap.min.css';
 
   const STYLE1 = {
-    "text-align": "center", 
+    "textAlign": "center", 
     "color":"#ebe465"
   }
-  const STYLE2 = {
-    "width": "30%", 
-    "margin":"30px auto"
-  }
+  // const STYLE2 = {
+  //   "width": "30%", 
+  //   "margin":"30px auto"
+  // }
   const STYLE3 = {
     "float":"center"
   }
 
-  const STYLE4 ={
-    "float":"center"
-  }
+  // const STYLE4 ={
+  //   "float":"center"
+  // }
 
   const StyleCenter = {
-      "justify-content": "center",
-      "align-items": "center",
-      "text-align": "center"
+      "justifyContent": "center",
+      "alignItems": "center",
+      "textAlign": "center"
 }
 
   const paddingStyle = {
@@ -43,7 +37,7 @@ import{
   }
 
   const color = {
-    "background-color":"black"
+    "backgroundColor":"black"
   }
 
 
@@ -81,7 +75,7 @@ import{
                           <Container>
                             <form style={StyleCenter}>
                               <h1 style={STYLE1}> Add preferance </h1>
-                              <div class ="form-group">
+                              <div className ="form-group">
                                 <input
                                   style={paddingStyle}
                                   name="Destination"
@@ -90,7 +84,7 @@ import{
                                   onChange={e => this.change(e)}
                                 />
                                 </div>
-                                <div class ="form-group">
+                                <div className ="form-group">
                                 <input
                                   style={paddingStyle}
                                   name="NumBusses"

@@ -1,32 +1,25 @@
 import React, {Component} from 'react';
 
-
 import{
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Container
   } from 'reactstrap';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 
   const STYLE1 = {
-    "text-align": "left", 
+    "textAlign": "left", 
     "color":"#ebe465"
   }
 
   const STYLE2 = {
-    "padding-bottom":"0",
-    "margin-bottom":"0", 
-    "background-color":"black"
+    "paddingBottom":"0",
+    "marginBottom":"0", 
+    "backgroundColor":"black"
   }
 
     const ConColor = {

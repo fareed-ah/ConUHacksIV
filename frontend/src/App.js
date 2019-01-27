@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AppNavbar from './Components/AppNavbar';
 import NavbarForm from './Components/NavbarForm'
-import ListingForm from "./Components/ListingForm"
 import Map from "./Components/Map.js"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
@@ -78,7 +77,7 @@ constructor(props) {
   		<div>
   			<AppNavbar />
   			<NavbarForm handler = {this.handler}/>
-        <Map />
+        	<Map />
   		</div>
   	);
   }

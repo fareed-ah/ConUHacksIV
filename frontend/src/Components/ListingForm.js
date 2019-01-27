@@ -1,7 +1,7 @@
 import React from "react";
 
 import AppNavbarListing from './AppNavbarListing';
-import {Container} from 'reactstrap';
+//import {Container} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 const StyleCenter = {
   "justify-content": "center",
@@ -10,10 +10,10 @@ const StyleCenter = {
    "color":"#ebe465"
     }
 
-const divStyle = {
-   "width": "45%",
-   "margin": "30px auto"
-}
+// const divStyle = {
+//    "width": "45%",
+//    "margin": "30px auto"
+// }
 
 export default class ListingForm extends React.Component {
   state = {
