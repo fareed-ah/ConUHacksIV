@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AppNavbar from './Components/AppNavbar';
-import ListingForm from "./Components/ListingForm"
+import NavbarForm from './Components/NavbarForm'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 
@@ -56,10 +56,12 @@ class App extends Component {
   };
 
   render() {
+  	document.body.style.backgroundColor = "#1a1a1a";
   	const data = this.state.data;
   	return (
   		<div>
   			<AppNavbar />
+  			<NavbarForm/>
   		</div>
   	);
 

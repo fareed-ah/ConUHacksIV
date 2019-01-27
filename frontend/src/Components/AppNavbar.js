@@ -18,6 +18,21 @@ import{
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+  const STYLE1 = {
+    "text-align": "left", 
+    "color":"#ebe465"
+  }
+
+  const STYLE2 = {
+    "padding-bottom":"0",
+    "margin-bottom":"0", 
+    "background-color":"black"
+  }
+
+    const ConColor = {
+    "color":"#ebe465"
+  }
+
   class AppNavbar extends Component{
   		state = {
   			isOpen: false
@@ -29,22 +44,20 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
   		  	}
   		  	render(){
   		  		return(
-              <Router>
-  		  		<div>
-  		  			<Navbar color="dark" dark expand="sm" className="mb-5">
-  		  				<Container>
-  		  					<NavbarBrand href="/"> SHFA </NavbarBrand>
+            <Router>
+  		  		<div style={STYLE2}>
+  		  			<Navbar color="dark" dark expand="sm" style={STYLE2}>
+  		  					<h1 style={STYLE1}> SHFA </h1>
   		  					<NavbarToggler onClick={this.toggle} />
-  		  					<Collapse isOpen={this.state.isOpen} navbar>
-  		  						<Nav className="ml-auto" navbar>
+  		  					<Collapse isOpen={this.state.isOpen} navbar style={ConColor} >
+  		  						<Nav className="ml-auto" navbar style={ConColor}>
   		  							<NavItem>
-	  		  							<NavLink href="http://localhost:3000/addListing">
+	  		  							<NavLink href="http://localhost:3000/addListing" style={ConColor}>
 	  		  								Add a Listing
 	  		  							</NavLink>
 	  		  						</NavItem>
   		  						</Nav>
   		  					</Collapse>
-  		  				</Container>
   		  			</Navbar>
   		  		</div>
             </Router>
