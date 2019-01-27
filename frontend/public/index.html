@@ -13,6 +13,12 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- Replace the value of the key parameter with your own API key. -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1F_n5E1N1b_xtjczOoGgDWe88Id6csr0&libraries=places&callback=initMap" async defer> </script>
+
+
+
+
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -29,6 +35,39 @@
     <div id="navbar_information"></div>
     <div id="navbar_selection"></div>
     <div id="root"></div>
+    <div id="map">
+      <script>
+      var map;
+      var service;
+      var infowindow;
+
+      function initMap() {
+        var sydney = new google.maps.LatLng(-33.867, 151.195);
+
+        infowindow = new google.maps.InfoWindow();
+
+        map = new google.maps.Map(
+            document.getElementById('map'), {center: sydney, zoom: 15});
+
+        var request = {
+          query: 'Museum of Contemporary Art Australia',
+          fields: ['name', 'geometry'],
+        };
+
+        var service = new google.maps.places.PlacesService(map);
+
+        service.findPlaceFromQuery(request, function(results, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+              createMarker(results[i]);
+            }
+            map.setCenter(results[0].geometry.location);
+          }
+        });
+      }
+      </script>
+    </div>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

@@ -11,8 +11,8 @@ class App extends Component {
   state = {
     data: [],
     id: 0,
-    Destination: "Carleton",
-    NumBusses: "2",
+    destination: "Carleton",
+    numBusses: "2",
     intervalIsSet: false,
   };
 
@@ -24,10 +24,10 @@ constructor(props) {
 
   handler(dest, num) {
     this.setState({
-      Destination: dest, 
+      Destination: dest,
       NumBusses: num
-    }); 
-  }; 
+    });
+  };
 
 
     // when component mounts, first thing it does is fetch all existing data in our db
@@ -77,7 +77,11 @@ constructor(props) {
   		<div>
   			<AppNavbar />
   			<NavbarForm handler = {this.handler}/>
+<<<<<<< Updated upstream
         	<Map />
+=======
+        <Map destination = {this.state.destination}/>
+>>>>>>> Stashed changes
   		</div>
   	);
   }
