@@ -1,5 +1,7 @@
 import React from "react";
 
+import AppNavbarListing from './AppNavbarListing';
+import {Container} from 'reactstrap';
 export default class ListingForm extends React.Component {
   state = {
     Address: "",
@@ -10,23 +12,18 @@ export default class ListingForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    // this.props.onChange({ [e.target.name]: e.target.value });
-    // this.setState({
-    //   [e.target.name]: e.target.value
-    // });
   };
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
-    this.setState({
-      Address: "",
-      Price: "",
-    });
+    console.log(this.state);
   };
 
   render() {
     return (
+      <div>
+      <AppNavbarListing/>
+      <Container>
       <form>
         <input
           name="Address"
@@ -44,6 +41,8 @@ export default class ListingForm extends React.Component {
         <br />
         <button onClick={e => this.onSubmit(e)}>Submit</button>
       </form>
+      </Container>
+      </div>
     );
   }
 }

@@ -6,14 +6,14 @@ const bodyParser = require("body-parser");
 var mongodb = require('mongodb');
 const logger = require("morgan");
 const Data = require("./data");
-var cors = require("cors"); 
+var cors = require("cors");
 
 
 const API_PORT = 3001;
 const app = express();
 const router = express.Router();
 
-app.use(cors()); 
+app.use(cors());
 
 //mlab database URL
 const dbRoute = "mongodb://sahilsharma356:Sahil_742995@ds135800.mlab.com:35800/shfa-db";
@@ -54,7 +54,7 @@ app.get('/getData', function(req, res){
 
 		var db = client.db("shfa-db");
 
-		db.collection('shfas').find().sort({$natural:-1}).toArray(function(err, data){
+		db.collection('datas').find().sort({$natural:-1}).toArray(function(err, data){
 			if(err){
 				return res.json({ success: false, error: err });
 			} else if (data.length){
@@ -71,7 +71,7 @@ app.get('/getData', function(req, res){
 
 // this is our update method
 // this method overwrites existing data in our database
-router.post("/updateData", (req, res) => {
+app.post("/updateData", (req, res) => {
   const { id, update } = req.body;
   Data.findOneAndUpdate(id, update, err => {
     if (err) return res.json({ success: false, error: err });
@@ -81,7 +81,7 @@ router.post("/updateData", (req, res) => {
 
 // this is our delete method
 // this method removes existing data in our database
-router.delete("/deleteData", (req, res) => {
+app.delete("/deleteData", (req, res) => {
   const { id } = req.body;
   Data.findOneAndDelete(id, err => {
     if (err) return res.send(err);
@@ -89,50 +89,21 @@ router.delete("/deleteData", (req, res) => {
   });
 });
 
-// this is our create method
-// this method adds new data in our database
-// router.post("/putData", (req, res) => {
-//   let data = new Data();
-//   const { id, address, price} = req.body;
+app.post("/postData", function(req, res) {
+  let data = new Data();
 
-//   if ((!id && id !== 0) || !address || !price) {
-//     return res.json({
-//       success: false,
-//       error: "INVALID INPUTS"
-//     });
-//   }
-//   data.address = address;
-//   data.price = price; 
-//   data.id = id;
-//   data.save(err => {
-//     if (err) return res.json({ success: false, error: err });
-//     return res.json({ success: true });
-//   });
-// });
+  const { id, address, price } = req.body;
 
-router.post("/getData", function(req,res){
-	var id = req.body.id; 
-	var address = req.body.address; 
-	var price = req.body.address; 
-	var newListing = {id:id, address:address, price:price}; 
-	shfas.push(newListing); 
-	return res.json({ success: true }); 
+  data.id= id;
+  data.address = address;
+	data.price = price;
+  data.save(err => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
 });
 
-// append /api for our http requests
-app.use("/api", router);
 
-//get data from api.
-// router.get("/results", function(req,res){
-// 	var title = "harry potter";
-// 	var url = "http://www.omdbapi.com/?s=" + title + "&apikey=thewdb";
-// 	request(url,function(error, response, body){
-//        if(!error && response.statusCode == 200){
-//            var data= JSON.parse(body)
-//            console.log(data);
-//        }
-//    });
-// });
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
