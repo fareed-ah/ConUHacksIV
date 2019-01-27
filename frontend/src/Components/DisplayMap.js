@@ -3,9 +3,8 @@ import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import axios from "axios";
 // import NavbarForm from "./NavbarForm"
-
-
-class Map extends Component {
+import Map from './MapComponent';
+class DisplayMap extends Component {
 
   state = {
     results:[],
@@ -21,6 +20,7 @@ class Map extends Component {
     componentDidMount() {
       this.setState({destination: this.props.destination})
       this.getLocationFromDb();
+    
     }
     getNearbyStopsFromDb = () => {
       fetch("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + this.state.lat+","+this.state.lng+"&rankby=distance&type=transit_station&key=AIzaSyD1F_n5E1N1b_xtjczOoGgDWe88Id6csr0")
@@ -56,10 +56,11 @@ class Map extends Component {
               </li>
             ))}
       </ul>
+        <Map/>
   		</div>
   	);
 
   }
 }
 
-export default Map;
+export default DisplayMap;
