@@ -81,7 +81,6 @@ constructor(props) {
         <Map />
   		</div>
   	);
-
   }
 }
 
