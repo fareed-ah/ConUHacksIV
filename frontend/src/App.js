@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AppNavbar from './Components/AppNavbar';
+import NavbarForm from './Components/NavbarForm'
 import ListingForm from "./Components/ListingForm"
 import Map from "./Components/Map.js"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -57,10 +58,12 @@ class App extends Component {
   };
 
   render() {
+  	document.body.style.backgroundColor = "#1a1a1a";
   	const data = this.state.data;
   	return (
   		<div>
   			<AppNavbar />
+  			<NavbarForm/>
         <Map />
   		</div>
   	);

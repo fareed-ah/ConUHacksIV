@@ -1,4 +1,5 @@
 import React, {Component} from 'react'; 
+import {BrowserRouter as Router, Route } from 'react-router-dom';
 import{
   Collapse,
   Navbar,
@@ -13,36 +14,97 @@ import{
   DropdownItem, 
   Container
   } from 'reactstrap';
+  import 'bootstrap/dist/css/bootstrap.min.css';
 
- export default class NavbarForm extends Component React.Component{
+  const STYLE1 = {
+    "text-align": "center", 
+    "color":"#ebe465"
+  }
+  const STYLE2 = {
+    "width": "30%", 
+    "margin":"30px auto"
+  }
+  const STYLE3 = {
+    "float":"center"
+  }
+
+  const STYLE4 ={
+    "float":"center"
+  }
+
+  const StyleCenter = {
+      "justify-content": "center",
+      "align-items": "center",
+      "text-align": "center"
+}
+
+  const paddingStyle = {
+    "padding":"5px"
+  }
+
+  const color = {
+    "background-color":"black"
+  }
+
+
+ export default class NavbarForm extends React.Component{
   		state = {
-        Destination: ""
-        NumBusses: ''; 
+        Destination: "",
+        NumBusses: '',
   			isOpen: false
-
   		}  
-  		  	toggle = () => {
-  		  		this.setState({
-  		  			isOpen: !this.state.isOpen
-  		  		});
-  		  	}
+
+      change = e => {
+        this.setState({
+          [e.target.name]:e.target.value
+        });
+      }; 
+
+      onSubmit = e => {
+        e.preventDefault(); 
+        console.log(this.state); 
+      }
+
+  		toggle = () => {
+  		  this.setState({
+  		  	isOpen: !this.state.isOpen
+  		  });
+  		}
   		  	render(){
   		  		return(
   		  		<div>
-  		  			<Navbar color="dark" dark expand="sm" className="mb-5">
-  		  				<Container>
-  		  					<NavbarBrand href="/"> Form </NavbarBrand>
-  		  					<NavbarToggler onClick={this.toggle} />
-  		  					<Collapse isOpen={this.state.isOpen} navbar>
-  		  						<Nav className="ml-auto" navbar> 
-  		  							<NavItem>
-	  		  							<NavLink href="http://localhost:3000">
-	  		  								Housing Location Finder
-	  		  							</NavLink>
-	  		  						</NavItem>
-  		  						</Nav>
-  		  					</Collapse>
-  		  				</Container>
+  		  			<Navbar color="dark" dark expand="x-lg" style={color}>
+    		  					<NavbarToggler onClick={this.toggle} style={STYLE3}/>
+    		  					<Collapse isOpen={this.state.isOpen} navbar>
+    		  						<Nav className="ml-auto" navbar> 
+    		  							<NavItem>
+                          <Container>
+                            <form style={StyleCenter}>
+                              <h1 style={STYLE1}> Add preferance </h1>
+                              <div class ="form-group">
+                                <input
+                                  style={paddingStyle}
+                                  name="Destination"
+                                  placeholder="1234 Mary Jane Ave."
+                                  value={this.state.Destination}
+                                  onChange={e => this.change(e)}
+                                />
+                                </div>
+                                <div class ="form-group">
+                                <input
+                                  style={paddingStyle}
+                                  name="NumBusses"
+                                  placeholder="600"
+                                  value={this.state.NumBusses}
+                                  onChange={e => this.change(e)}
+                                />
+                                </div>
+                              <button onClick={e => this.onSubmit(e)}>Submit</button>
+                            </form>
+                          </Container>
+  	  		  						</NavItem>
+    		  						</Nav>
+    		  					</Collapse>
   		  			</Navbar>
   		  		</div>
   		  	);
