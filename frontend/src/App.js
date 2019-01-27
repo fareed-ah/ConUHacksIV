@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AppNavbar from './Components/AppNavbar';
 import NavbarForm from './Components/NavbarForm'
-import Map from "./Components/Map.js"
+import DisplayMap from "./Components/DisplayMap.js"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 
@@ -77,11 +77,8 @@ constructor(props) {
   		<div>
   			<AppNavbar />
   			<NavbarForm handler = {this.handler}/>
-<<<<<<< Updated upstream
-        	<Map />
-=======
-        <Map destination = {this.state.destination}/>
->>>>>>> Stashed changes
+
+        <DisplayMap destination = {this.state.destination}/>
   		</div>
   	);
   }
