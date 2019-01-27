@@ -24,7 +24,7 @@ import{
   		  		return(
   		  		<div>
   		  			<Navbar color="dark" dark expand="sm" className="mb-5">
-  		  					<h1 style={ConColor}> SHFA </h1> <i class="fas fa-bus" style={ConColor}></i> 
+  		  					<h1 style={ConColor}> SHFA </h1> <i className="fas fa-bus" style={ConColor}></i> 
   		  					<NavbarToggler onClick={this.toggle} />
   		  					<Collapse isOpen={this.state.isOpen} navbar>
   		  						<Nav className="ml-auto" navbar> 

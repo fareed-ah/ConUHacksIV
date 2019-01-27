@@ -4,9 +4,9 @@ import AppNavbarListing from './AppNavbarListing';
 //import {Container} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 const StyleCenter = {
-  "justify-content": "center",
-  "align-items": "center",
-   "text-align": "center",
+  "justifyContent": "center",
+  "alignItems": "center",
+   "textAlign": "center",
    "color":"#ebe465"
     }
 
@@ -36,12 +36,12 @@ export default class ListingForm extends React.Component {
   render() {
     document.body.style.backgroundColor = "#1a1a1a";
     return (
-      <div class="Container">
+      <div className="Container">
       <AppNavbarListing/>
       <h1 style={StyleCenter}>Create a New Listing</h1>
-      <div class="row" style={StyleCenter}>
+      <div className="row" style={StyleCenter}>
       <form style={StyleCenter}>
-      <div class ="form-group" style={StyleCenter}>
+      <div className ="form-group" style={StyleCenter}>
         <input
           style={StyleCenter}
           name="Address"
@@ -51,7 +51,7 @@ export default class ListingForm extends React.Component {
         />
       </div>
         <br />
-      <div class ="form-group" style={StyleCenter}>
+      <div className ="form-group" style={StyleCenter}>
         <input
           style={StyleCenter}
           name="Price"
